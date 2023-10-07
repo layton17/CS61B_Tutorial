@@ -13,7 +13,7 @@ public class ArrayDeque<T> {
         return length == size;
     }
     public boolean isEmpty(){
-        return size == 0;
+        return length == 0;
     }
     private void ResizeArray(int m){
         T[] tmp;
@@ -76,7 +76,7 @@ public class ArrayDeque<T> {
     }
 
     public int size(){
-        return size;
+        return length;
     }
 
     public void printDeque() {
