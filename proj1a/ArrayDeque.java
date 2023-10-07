@@ -1,6 +1,6 @@
 public class ArrayDeque<T> {
     private T[] data;
-    private int size,front,end,length;
+    private int size, front, end, length;
     public ArrayDeque(){
         data = ( T[] ) new Object[8];
         size = 8;
@@ -21,7 +21,7 @@ public class ArrayDeque<T> {
             tmp = (T[]) new Object[size * 2];
             for(int i = front, j=0; j != length; i = (i + 1) % size, j++)
                 tmp[j] = this.data[i];
-            size = size *2;
+            size = size * 2;
         }
         else{
             if(size == 8)
@@ -89,19 +89,4 @@ public class ArrayDeque<T> {
             System.out.println(data[i]);
         }
     }
-    public static void main(String[] args){
-        ArrayDeque<Integer> a = new ArrayDeque<>();
-        System.out.print(a.isEmpty()+"\n");
-        a.addFirst(1);
-        System.out.println(a.removeFirst());
-        a.addFirst(3);
-        System.out.println(a.removeFirst());
-        System.out.print(a.isEmpty()+"\n");
-        a.addFirst(6);
-        System.out.println(a.removeFirst());
-        a.addFirst(8);
-        System.out.println(a.removeFirst());
-        System.out.print(a.isEmpty());
-    }
-
 }
