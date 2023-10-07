@@ -15,16 +15,19 @@ public class ArrayDeque<T> {
     public boolean isEmpty(){
         return length == 0;
     }
-    private void ResizeArray(int m){
+    private void resizeArray(int m){
         T[] tmp;
         if(m == 0){
             tmp = (T[]) new Object[size * 2];
-            for(int i = front,j=0; j != length; i = (i + 1) % size,j++)
+            for(int i = front, j=0; j != length; i = (i + 1) % size, j++)
                 tmp[j] = this.data[i];
             size = size *2;
-        }else{
+        }
+        else{
+            if(size == 8)
+                return;
             tmp = (T[]) new Object[(int) (size / 2)];
-            for(int i = front,j=0; j != length; i = (i + 1) % size,j++)
+            for(int i = front, j=0; j != length; i = (i + 1) % size, j++)
                 tmp[j] = this.data[i];
             size /= 2;
         }
@@ -34,7 +37,7 @@ public class ArrayDeque<T> {
     }
     public void addFirst(T x){
         if(this.isFull()){
-            this.ResizeArray(0);
+            this.resizeArray(0);
         }
         front = (front - 1 + size) % size;
         data[front] = x;
@@ -42,7 +45,7 @@ public class ArrayDeque<T> {
     }
     public void addLast(T x){
         if(this.isFull()){
-            this.ResizeArray(0);
+            this.resizeArray(0);
         }
         data[end] = x;
         end = (end + 1) % size;
@@ -56,7 +59,7 @@ public class ArrayDeque<T> {
         front = (front + 1) % size;
         length--;
         if(length * 4 < size)
-            this.ResizeArray(1);
+            this.resizeArray(1);
         return tmp;
     }
     public T removeLast(){
@@ -66,7 +69,7 @@ public class ArrayDeque<T> {
         T tmp = data[end];
         length--;
         if(length * 4 < size)
-            this.ResizeArray(1);
+            this.resizeArray(1);
         return tmp;
     }
 
@@ -85,6 +88,20 @@ public class ArrayDeque<T> {
         for (int i = front ; i != end; i = (i + 1) % size ) {
             System.out.println(data[i]);
         }
+    }
+    public static void main(String[] args){
+        ArrayDeque<Integer> a = new ArrayDeque<>();
+        System.out.print(a.isEmpty()+"\n");
+        a.addFirst(1);
+        System.out.println(a.removeFirst());
+        a.addFirst(3);
+        System.out.println(a.removeFirst());
+        System.out.print(a.isEmpty()+"\n");
+        a.addFirst(6);
+        System.out.println(a.removeFirst());
+        a.addFirst(8);
+        System.out.println(a.removeFirst());
+        System.out.print(a.isEmpty());
     }
 
 }
