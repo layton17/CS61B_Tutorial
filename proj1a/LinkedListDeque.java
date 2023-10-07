@@ -1,44 +1,43 @@
 public class LinkedListDeque<T> {
     private int size;
-
-    private class DeNode{
+    private class DeNode {
         public T data;
         public DeNode front,next;
-        public DeNode(T data,DeNode pre,DeNode p){
+        public DeNode(T data, DeNode pre, DeNode p) {
             this.data = data;
             this.next = p;
             this.front = pre;
         }
     }
-    private DeNode sentinal = new DeNode(null,null,null);
+    private DeNode sentinal = new DeNode(null, null, null);
 
-    public void addFirst(T item){
-        if(sentinal.next == null){
-            DeNode tmp = new DeNode(item,sentinal,sentinal);
+    public void addFirst(T item) {
+        if (sentinal.next == null) {
+            DeNode tmp = new DeNode(item, sentinal, sentinal);
             sentinal.next = tmp;
             sentinal.front = tmp;
         }
-        else{
-            DeNode tmp = new DeNode(item,sentinal,sentinal.next);
+        else {
+            DeNode tmp = new DeNode(item, sentinal, sentinal.next);
             sentinal.next.front = tmp;
             sentinal.next = tmp;
         }
         size++;
     }
 
-    public void addLast(T item){
-        if(sentinal.next == null){
-            DeNode tmp = new DeNode(item,sentinal,sentinal);
+    public void addLast(T item) {
+        DeNode tmp;
+        if(sentinal.next == null) {
+            tmp = new DeNode(item, sentinal, sentinal);
             sentinal.next = tmp;
-            sentinal.front = tmp;
         }
-        else{
-            DeNode tmp = new DeNode(item,null,null);
+        else {
+            tmp = new DeNode(item, null, null);
             tmp.next = sentinal;
             tmp.front = sentinal.front;
             sentinal.front.next = tmp;
-            sentinal.front = tmp;
         }
+        sentinal.front = tmp;
         size++;
     }
 
@@ -50,15 +49,14 @@ public class LinkedListDeque<T> {
         return size;
     }
 
-    public void printDeque(){
+    public void printDeque() {
         DeNode p = sentinal.next;
-        while(p != sentinal && p!= null)
-        {
+        while (p != sentinal && p!= null) {
             System.out.print(p.data+" ");
             p = p.next;
         }
     }
-    public T removeFirst(){
+    public T removeFirst() {
         if(size == 0)
             return null;
         DeNode p = sentinal.next, p1 = sentinal.next.next;
@@ -66,11 +64,9 @@ public class LinkedListDeque<T> {
         p1.front = sentinal;
         size--;
         return p.data;
-
-
     }
-    public T removeLast(){
-        if(size == 0)
+    public T removeLast() {
+        if (size == 0)
             return null;
         DeNode p = sentinal.front, pre = sentinal.front.front;
         pre.next = sentinal;
@@ -79,11 +75,11 @@ public class LinkedListDeque<T> {
         return p.data;
     }
 
-    public T get(int index){
-        if(index >= size)
+    public T get(int index) {
+        if (index >= size)
             return null;
         DeNode p = sentinal.next;
-        while(index != 0){
+        while (index != 0) {
             p = p.next;
             index--;
         }
@@ -92,15 +88,13 @@ public class LinkedListDeque<T> {
     public LinkedListDeque(){
         size = 0;
     }
-    public T getRecursive(int index){
-        if(index >= size)
+    public T getRecursive(int index) {
+        if (index >= size)
             return null;
         return getHandler(index,this.sentinal.next);
     }
-    private T getHandler(int index, DeNode p)
-    {
-        if(index == 0)
-        {
+    private T getHandler(int index, DeNode p) {
+        if (index == 0) {
             return p.data;
         }
         return getHandler(index - 1,p.next);
