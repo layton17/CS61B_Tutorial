@@ -47,21 +47,25 @@ public class ArrayDeque<T> {
         length++;
     }
 
-    public void removeFirst(){
+    public T removeFirst(){
         if(this.IsEmpty())
-            return;
+            return null;
+        T tmp = data[front];
         front = (front + 1) % size;
         length--;
         if(length * 4 < size)
             this.ResizeArray(1);
+        return tmp;
     }
-    public void removeLast(){
+    public T removeLast(){
         if(this.IsEmpty())
-            return;
+            return null;
+        T tmp = data[end-1];
         end = (end - 1 + size) % size;
         length--;
         if(length * 4 < size)
             this.ResizeArray(1);
+        return tmp;
     }
 
     public T get(int index){
