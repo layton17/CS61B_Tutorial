@@ -30,7 +30,15 @@ public class ArrayDeque<T> {
         front = 0;
         end = length;
     }
-    public void add(T x){
+    public void addFirst(T x){
+        if(this.IsFull()){
+            this.ResizeArray(0);
+        }
+        front = (front-1+size) % size;
+        data[front] = x;
+        length++;
+    }
+    public void addLast(T x){
         if(this.IsFull()){
             this.ResizeArray(0);
         }
@@ -39,11 +47,18 @@ public class ArrayDeque<T> {
         length++;
     }
 
-
-    public void remove(){
+    public void removeFirst(){
         if(this.IsEmpty())
             return;
         front = (front + 1) % size;
+        length--;
+        if(length * 4 < size)
+            this.ResizeArray(1);
+    }
+    public void removeLast(){
+        if(this.IsEmpty())
+            return;
+        end = (end - 1 + size) % size;
         length--;
         if(length * 4 < size)
             this.ResizeArray(1);
@@ -64,5 +79,17 @@ public class ArrayDeque<T> {
             System.out.println(data[i]);
         }
     }
-    
+    public static void main(String[] args){
+        ArrayDeque<Integer> a = new ArrayDeque<>();
+        a.addFirst(1);
+        a.addFirst(2);
+        a.addLast(3);
+        a.addLast(4);
+        a.removeFirst();
+        a.removeLast();
+        System.out.print(a.get(2)+"\n");
+        System.out.print(a.size()+" "+a.length+"\n");
+        a.printDeque();
+    }
+
 }
