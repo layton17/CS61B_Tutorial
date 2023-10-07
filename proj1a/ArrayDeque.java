@@ -86,15 +86,5 @@ public class ArrayDeque<T> {
             System.out.println(data[i]);
         }
     }
-    public static void main(String[] args){
-        ArrayDeque<Integer> a = new ArrayDeque<>();
-        a.addFirst(0);
-        a.addFirst(1);
-        int g= a.get(1);
-        System.out.println(g);
-        a.removeLast();
-        a.printDeque();
-
-    }
 
 }
