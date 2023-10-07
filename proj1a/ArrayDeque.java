@@ -19,11 +19,13 @@ public class ArrayDeque<T> {
         T[] tmp;
         if(m == 0){
             tmp = (T[]) new Object[size * 2];
-            System.arraycopy(data, front, tmp, 0, length);
+            for(int i = front,j=0; j != length; i = (i + 1) % size,j++)
+                tmp[j] = this.data[i];
             size = size *2;
         }else{
             tmp = (T[]) new Object[(int) (size / 2)];
-            System.arraycopy(data, front, tmp, 0, length);
+            for(int i = front,j=0; j != length; i = (i + 1) % size,j++)
+                tmp[j] = this.data[i];
             size /= 2;
         }
         data = tmp;
@@ -83,6 +85,22 @@ public class ArrayDeque<T> {
         for (int i = front ; i != end; i = (i + 1) % size ) {
             System.out.println(data[i]);
         }
+    }
+    public static void main(String[] args){
+        ArrayDeque<Integer> a = new ArrayDeque<>();
+        a.addLast(0);
+        a.addLast(1);
+        a.addLast(2);
+        a.addFirst(3);
+        a.size();
+        a.addFirst(5);
+        a.size();
+        a.addLast(7);
+        a.addFirst(8);
+        a.addLast(9);
+        a.addFirst(10);
+        a.printDeque();
+
     }
 
 }
