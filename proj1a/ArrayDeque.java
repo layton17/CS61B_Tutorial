@@ -9,10 +9,10 @@ public class ArrayDeque<T> {
         length = 0;
     }
 
-    private boolean IsFull(){
+    private boolean isFull(){
         return length == size;
     }
-    private boolean IsEmpty(){
+    private boolean isEmpty(){
         return size == 0;
     }
     private void ResizeArray(int m){
@@ -31,7 +31,7 @@ public class ArrayDeque<T> {
         end = length;
     }
     public void addFirst(T x){
-        if(this.IsFull()){
+        if(this.isFull()){
             this.ResizeArray(0);
         }
         front = (front-1+size) % size;
@@ -39,7 +39,7 @@ public class ArrayDeque<T> {
         length++;
     }
     public void addLast(T x){
-        if(this.IsFull()){
+        if(this.isFull()){
             this.ResizeArray(0);
         }
         data[end] = x;
@@ -48,7 +48,7 @@ public class ArrayDeque<T> {
     }
 
     public T removeFirst(){
-        if(this.IsEmpty())
+        if(this.isEmpty())
             return null;
         T tmp = data[front];
         front = (front + 1) % size;
@@ -58,7 +58,7 @@ public class ArrayDeque<T> {
         return tmp;
     }
     public T removeLast(){
-        if(this.IsEmpty())
+        if(this.isEmpty())
             return null;
         T tmp = data[end-1];
         end = (end - 1 + size) % size;
