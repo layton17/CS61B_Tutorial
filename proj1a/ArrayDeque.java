@@ -62,8 +62,8 @@ public class ArrayDeque<T> {
     public T removeLast(){
         if(this.isEmpty())
             return null;
-        T tmp = data[end - 1];
         end = (end - 1 + size) % size;
+        T tmp = data[end];
         length--;
         if(length * 4 < size)
             this.ResizeArray(1);
@@ -71,7 +71,7 @@ public class ArrayDeque<T> {
     }
 
     public T get(int index){
-        if(index > length)
+        if(index > length || index < 0)
             return null;
         else
             return data[(front + index) % size];
@@ -88,17 +88,11 @@ public class ArrayDeque<T> {
     }
     public static void main(String[] args){
         ArrayDeque<Integer> a = new ArrayDeque<>();
-        a.addLast(0);
-        a.addLast(1);
-        a.addLast(2);
-        a.addFirst(3);
-        a.size();
-        a.addFirst(5);
-        a.size();
-        a.addLast(7);
-        a.addFirst(8);
-        a.addLast(9);
-        a.addFirst(10);
+        a.addFirst(0);
+        a.addFirst(1);
+        int g= a.get(1);
+        System.out.println(g);
+        a.removeLast();
         a.printDeque();
 
     }
