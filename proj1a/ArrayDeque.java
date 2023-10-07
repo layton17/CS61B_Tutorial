@@ -9,10 +9,10 @@ public class ArrayDeque<T> {
         length = 0;
     }
 
-    private boolean isFull(){
+    public boolean isFull(){
         return length == size;
     }
-    private boolean isEmpty(){
+    public boolean isEmpty(){
         return size == 0;
     }
     private void ResizeArray(int m){
