@@ -19,16 +19,19 @@ public class ArrayDeque<T> {
         T[] tmp;
         if (m == 0) {
             tmp = (T[]) new Object[size * 2];
-            for (int i = front, j=0; j != length; i = (i + 1) % size, j++)
+            for (int i = front, j = 0; j != length; i = (i + 1) % size, j++) {
                 tmp[j] = this.data[i];
+            }
             size = size * 2;
         }
         else {
-            if (size == 8)
+            if (size == 8) {
                 return;
+            }
             tmp = (T[]) new Object[(int) (size / 2)];
-            for (int i = front, j=0; j != length; i = (i + 1) % size, j++)
+            for (int i = front, j = 0; j != length; i = (i + 1) % size, j++) {
                 tmp[j] = this.data[i];
+            }
             size /= 2;
         }
         data = tmp;
@@ -53,31 +56,37 @@ public class ArrayDeque<T> {
     }
 
     public T removeFirst() {
-        if (this.isEmpty())
+        if (this.isEmpty()) {
             return null;
+        }
         T tmp = data[front];
         front = (front + 1) % size;
         length--;
-        if (length * 4 < size)
+        if (length * 4 < size) {
             this.resizeArray(1);
+        }
         return tmp;
     }
     public T removeLast() {
-        if (this.isEmpty())
+        if (this.isEmpty()) {
             return null;
+        }
         end = (end - 1 + size) % size;
         T tmp = data[end];
         length--;
-        if (length * 4 < size)
+        if (length * 4 < size) {
             this.resizeArray(1);
+        }
         return tmp;
     }
 
     public T get(int index) {
-        if (index > length || index < 0)
+        if (index > length || index < 0) {
             return null;
-        else
+        }
+        else {
             return data[(front + index) % size];
+        }
     }
 
     public int size() {
@@ -85,7 +94,7 @@ public class ArrayDeque<T> {
     }
 
     public void printDeque() {
-        for (int i = front ; i != end; i = (i + 1) % size ) {
+        for (int i = front; i != end; i = (i + 1) % size) {
             System.out.println(data[i]);
         }
     }

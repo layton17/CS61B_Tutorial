@@ -2,7 +2,7 @@ public class LinkedListDeque<T> {
     private int size;
     private class DeNode {
         public T data;
-        public DeNode front,next;
+        public DeNode front, next;
         public DeNode(T data, DeNode pre, DeNode p) {
             this.data = data;
             this.next = p;
@@ -57,7 +57,7 @@ public class LinkedListDeque<T> {
         }
     }
     public T removeFirst() {
-        if(size == 0)
+        if (size == 0)
             return null;
         DeNode p = sentinal.next, p1 = sentinal.next.next;
         sentinal.next = p1;
@@ -66,8 +66,9 @@ public class LinkedListDeque<T> {
         return p.data;
     }
     public T removeLast() {
-        if (size == 0)
+        if (size == 0) {
             return null;
+        }
         DeNode p = sentinal.front, pre = sentinal.front.front;
         pre.next = sentinal;
         sentinal.front = pre;
@@ -76,8 +77,9 @@ public class LinkedListDeque<T> {
     }
 
     public T get(int index) {
-        if (index >= size)
+        if (index >= size) {
             return null;
+        }
         DeNode p = sentinal.next;
         while (index != 0) {
             p = p.next;
@@ -89,14 +91,15 @@ public class LinkedListDeque<T> {
         size = 0;
     }
     public T getRecursive(int index) {
-        if (index >= size)
+        if (index >= size) {
             return null;
-        return getHandler(index,this.sentinal.next);
+        }
+        return getHandler(index, this.sentinal.next);
     }
     private T getHandler(int index, DeNode p) {
         if (index == 0) {
             return p.data;
         }
-        return getHandler(index - 1,p.next);
+        return getHandler(index - 1, p.next);
     }
 }
