@@ -64,23 +64,5 @@ public class ArrayDeque<T> {
             System.out.println(data[i]);
         }
     }
-    public static void main(String[] args){
-        ArrayDeque<Integer> a = new ArrayDeque<>();
-        a.add(1);
-        a.add(2);
-        a.add(3);
-        a.add(4);
-        a.add(5);
-        a.add(6);
-        a.add(7);
-        a.add(8);
-        a.add(9);
-        for(int i=0;i<6;i++)
-            a.remove();
-        System.out.print(a.get(2)+"\n");
-        System.out.print(a.size()+" "+a.length+"\n");
-        a.printDeque();
-    }
-
-
+    
 }
