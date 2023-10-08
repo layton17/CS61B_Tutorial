@@ -1,9 +1,9 @@
 public class LinkedListDeque<T> {
     private int size;
     private class DeNode {
-        public T data;
-        public DeNode front, next;
-        public DeNode(T data, DeNode pre, DeNode p) {
+        private T data;
+        private DeNode front, next;
+        private DeNode(T data, DeNode pre, DeNode p) {
             this.data = data;
             this.next = p;
             this.front = pre;
@@ -16,8 +16,7 @@ public class LinkedListDeque<T> {
             DeNode tmp = new DeNode(item, sentinal, sentinal);
             sentinal.next = tmp;
             sentinal.front = tmp;
-        }
-        else {
+        } else {
             DeNode tmp = new DeNode(item, sentinal, sentinal.next);
             sentinal.next.front = tmp;
             sentinal.next = tmp;
@@ -27,11 +26,10 @@ public class LinkedListDeque<T> {
 
     public void addLast(T item) {
         DeNode tmp;
-        if(sentinal.next == null) {
+        if (sentinal.next == null) {
             tmp = new DeNode(item, sentinal, sentinal);
             sentinal.next = tmp;
-        }
-        else {
+        } else {
             tmp = new DeNode(item, null, null);
             tmp.next = sentinal;
             tmp.front = sentinal.front;
@@ -40,19 +38,14 @@ public class LinkedListDeque<T> {
         sentinal.front = tmp;
         size++;
     }
-
-    public boolean isEmpty(){
-        return size == 0;
-    }
-
+    public boolean isEmpty() {return size == 0;}
     public int size(){
         return size;
     }
-
     public void printDeque() {
         DeNode p = sentinal.next;
-        while (p != sentinal && p!= null) {
-            System.out.print(p.data+" ");
+        while (p != sentinal && p != null) {
+            System.out.print(p.data + " ");
             p = p.next;
         }
     }
@@ -87,7 +80,7 @@ public class LinkedListDeque<T> {
         }
         return p.data;
     }
-    public LinkedListDeque(){
+    public LinkedListDeque() {
         size = 0;
     }
     public T getRecursive(int index) {
