@@ -38,8 +38,10 @@ public class LinkedListDeque<T> {
         sentinal.front = tmp;
         size++;
     }
-    public boolean isEmpty() {return size == 0;}
-    public int size(){
+    public boolean isEmpty() {
+        return size == 0;
+    }
+    public int size() {
         return size;
     }
     public void printDeque() {
@@ -50,8 +52,9 @@ public class LinkedListDeque<T> {
         }
     }
     public T removeFirst() {
-        if (size == 0)
+        if (size == 0) {
             return null;
+        }
         DeNode p = sentinal.next, p1 = sentinal.next.next;
         sentinal.next = p1;
         p1.front = sentinal;
