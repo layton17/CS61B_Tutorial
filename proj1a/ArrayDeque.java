@@ -23,8 +23,7 @@ public class ArrayDeque<T> {
                 tmp[j] = this.data[i];
             }
             size = size * 2;
-        }
-        else {
+        } else {
             if (size == 8) {
                 return;
             }
@@ -83,8 +82,7 @@ public class ArrayDeque<T> {
     public T get(int index) {
         if (index > length || index < 0) {
             return null;
-        }
-        else {
+        } else {
             return data[(front + index) % size];
         }
     }
